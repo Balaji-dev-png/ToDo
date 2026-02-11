@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Form</title>
+</head>
+<body>
+
+    <h2>{% if form.instance.pk %}Edit Task{% else %}Create Task{% endif %}</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+
+        <button type="submit">Save Task</button>
+        
+        <a href="{% url 'tasklist' %}">Cancel</a>
+    </form>
+
+</body>
+</html>

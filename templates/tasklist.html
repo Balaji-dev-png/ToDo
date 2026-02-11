@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo-List</title>
+    <link rel="stylesheet" href="static\style.css">
+</head>
+<body>
+    <div class="main">
+        <h1>My-ToDo-List</h1>
+        <a href="{% url 'createtask' %}">Add Task</a>
+        <ul class="list">
+            {% for task in tasks %}
+                <li class="mainlist">
+                    {{task.title}} ({{task.description}})
+                    {% if task.completed %} - Completed {% endif %}
+                    <a href="{% url 'deletetask' task.pk %}">Delete</a>
+                </li>
+            {% empty %}
+            <li class="ll">No Tasks yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
