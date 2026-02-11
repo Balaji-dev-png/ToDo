@@ -1,26 +1,27 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToDo-List</title>
-    <link rel="stylesheet" href="static\style.css">
+    <title>Tasks - {{ category.name }}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-    <div class="main">
-        <h1>My-ToDo-List</h1>
-        <a href="{% url 'createtask' %}">Add Task</a>
-        <ul class="list">
-            {% for task in tasks %}
-                <li class="mainlist">
-                    {{task.title}} ({{task.description}})
-                    {% if task.completed %} - Completed {% endif %}
-                    <a href="{% url 'deletetask' task.pk %}">Delete</a>
-                </li>
-            {% empty %}
-            <li class="ll">No Tasks yet.</li>
-            {% endfor %}
-        </ul>
+    <h2>Tasks for: {{ category.name }}</h2>
+    <a href="{% url 'createtask' category.id %}" class="btn btn-add">+ Add New Task</a>
+    <a href="{% url 'categorylist' %}" class="btn btn-cancel">Back to Headings</a>
+
+    <ul>
+        {% for task in tasks %}
+<li>
+    <div>
+        <strong>{{ task.title }}</strong>
+        <p style="margin: 5px 0; color: #666; font-size: 0.9em;">
+            {{ task.description }}
+        </p>
     </div>
+    <a href="{% url 'deletetask' task.pk %}" class="btn btn-delete">Done / Delete</a>
+</li>
+{% endfor %}
+    </ul>
 </body>
 </html>

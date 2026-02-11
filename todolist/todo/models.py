@@ -11,11 +11,11 @@ class Category(models.Model):
 
 
 class Task(models.Model):
-    name = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='tasks')
+    name = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='tasks', null = True)
     title = models.CharField(max_length=200)
     description = models.TextField()
     completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        self.title
+        return self.title

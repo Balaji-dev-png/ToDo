@@ -1,22 +1,17 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Task Form</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-
     <h2>{% if form.instance.pk %}Edit Task{% else %}Create Task{% endif %}</h2>
-
     <form method="POST">
         {% csrf_token %}
-        
         {{ form.as_p }}
-
         <button type="submit">Save Task</button>
-        
-        <a href="{% url 'tasklist' %}">Cancel</a>
+        <a href="{% url 'tasklist' category.id %}" class="btn btn-cancel">Cancel</a>
     </form>
-
 </body>
 </html>

@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Work Headings</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h2>My Work Headings</h2>
+
+    <div style="margin-bottom: 30px;">
+        <form method="POST">
+            {% csrf_token %}
+            <h3>Create a New Heading</h3>
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-add">Add Heading</button>
+        </form>
+    </div>
+
+    <hr>
+
+    <ul>
+        {% for category in categories %}
+        <li>
+            <a href="{% url 'tasklist' category.id %}" style="text-decoration:none; color:#2980b9; font-weight:bold;">
+                {{ category.name }}
+            </a>
+            <a href="{% url 'deletecategory' category.id %}" class="btn btn-delete">Delete Heading</a>
+        </li>
+        {% empty %}
+        <p>No headings created yet. Use the form above to start!</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>
