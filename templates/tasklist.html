@@ -8,7 +8,7 @@
 <body>
     <h2>Tasks for: {{ category.name }}</h2>
     <a href="{% url 'createtask' category.id %}" class="btn btn-add">+ Add New Task</a>
-    <a href="{% url 'categorylist' %}" class="btn btn-cancel">Back to Headings</a>
+    <a href="{% url 'categorylist' %}" class="btn btn-cancel">Back to Lists</a>
 
     <ul>
         {% for task in tasks %}
